@@ -10,17 +10,15 @@ public class Bank {
         
         System.out.print("Введите необходумую сумму вывода(грн): ");
         Scanner input = new Scanner(System.in);
-        String count_str = input.nextLine();
         
         try {
-            int count = Integer.parseInt(count_str);
+            int count = input.nextInt();
             for(int i = denominations.length - 1; i >= 0; i--){
                 if((count % denominations[i]) == 0){
                     result[i] = count / denominations[i];
                     break;
                 }
                 if(count > denominations[i]){
-                    System.out.println(count);
                     result[i] = (int) Math.floor(count / denominations[i]);
                     count -= result[i] * denominations[i];
                 }
@@ -29,7 +27,7 @@ public class Bank {
                 if(result[i] != 0) System.out.println("Купюра " + denominations[i] + " грн. - " + result[i] + " шт.");
 
             }
-        } catch(NumberFormatException ex) {
+        } catch(Exception e) {
             System.out.println("Данная сумма не может быть выдана...");
         }
     }
